@@ -8,6 +8,7 @@ class AuthForm extends StatefulWidget {
 class _AuthFormState extends State<AuthForm> {
   final _formKey = GlobalKey<FormState>();
 
+  bool _isLogin = false;
   String _email = '';
   String _name = '';
   String _password = '';
@@ -53,6 +54,7 @@ class _AuthFormState extends State<AuthForm> {
                     },
                   ),
 
+                  if (!_isLogin)
                   TextFormField(
                     validator: (value) {
                       if (value.isEmpty || value.length < 4) {
@@ -85,13 +87,17 @@ class _AuthFormState extends State<AuthForm> {
                   SizedBox(height: 12,),
 
                   RaisedButton(
-                    child: Text('Login'),
+                    child: Text(_isLogin?'Login':'Signup'),
                     onPressed: () {},
                   ),
                   FlatButton(
                     textColor: Theme.of(context).primaryColor,
-                    child: Text('Create new account'),
-                    onPressed: () {},
+                    child: Text(_isLogin ? 'Create new account':'I already have an account'),
+                    onPressed: () {
+                      setState(() {
+                          _isLogin = !_isLogin;
+                      });
+                    },
                   ),
                 ],
               ),
