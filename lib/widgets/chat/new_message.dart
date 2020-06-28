@@ -14,10 +14,12 @@ class _NewMessageState extends State<NewMessage> {
     FocusScope.of(context).unfocus(); // close keyboard.
     Firestore.instance.collection('chat').add({
         'text': _enteredMessage,
+        'createdAt': Timestamp.now(),
     });
 
     _controller.clear();
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,7 +33,9 @@ class _NewMessageState extends State<NewMessage> {
               controller: _controller,
               decoration: InputDecoration(labelText: 'Send a message...'),
               onChanged: (value) {
-                _enteredMessage = value;
+                setState(() {
+                    _enteredMessage = value;
+                });
               },
             ),
           ),
