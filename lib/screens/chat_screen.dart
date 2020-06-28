@@ -41,7 +41,7 @@ class ChatScreen extends StatelessWidget {
       body: Container(
         child: Column(
           children: [
-            Expanded(
+            Expanded( // ListView will not work well inside of column with Expanded.
               child: Messages(),
             ),
           ],
