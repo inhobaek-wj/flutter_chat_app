@@ -15,7 +15,8 @@ class _NewMessageState extends State<NewMessage> {
       padding: EdgeInsets.all(8),
       child: Row(
         children: [
-          Expanded(
+
+          Expanded( // TextField will not work well inside of row with Expanded.
             child: TextField(
               decoration: InputDecoration(labelText: 'Send a message...'),
               onChanged: (value) {
@@ -23,6 +24,7 @@ class _NewMessageState extends State<NewMessage> {
               },
             ),
           ),
+
           IconButton(
             color: Theme.of(context).primaryColor,
             icon: Icon(
