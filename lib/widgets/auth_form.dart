@@ -4,7 +4,8 @@ class AuthForm extends StatefulWidget {
 
   AuthForm(this.submitFn);
 
-  final void Function(String email,String password,String userName,bool isLogin) submitFn;
+  final void Function(
+    String email,String password,String userName,bool isLogin,BuildContext ctx) submitFn;
 
   @override
   _AuthFormState createState() => _AuthFormState();
@@ -18,14 +19,14 @@ class _AuthFormState extends State<AuthForm> {
   String _name = '';
   String _password = '';
 
-  void _trySubmin() {
+  void _trySubmit() {
     final isValid = _formKey.currentState.validate();
     FocusScope.of(context).unfocus();
 
     if (isValid) {
       _formKey.currentState.save();
 
-      widget.submitFn(_email,_password,_name,_isLogin);
+      widget.submitFn(_email.trim(),_password.trim(),_name.trim(),_isLogin,context);
     }
   }
 
@@ -98,7 +99,7 @@ class _AuthFormState extends State<AuthForm> {
 
                   RaisedButton(
                     child: Text(_isLogin?'Login':'Signup'),
-                    onPressed: () {},
+                    onPressed: _trySubmit,
                   ),
                   FlatButton(
                     textColor: Theme.of(context).primaryColor,
