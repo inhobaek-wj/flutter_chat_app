@@ -38,6 +38,11 @@ class _NewMessageState extends State<NewMessage> {
           Expanded( // TextField will not work well inside of row with Expanded.
             child: TextField(
               controller: _controller,
+
+              autocorrect: true,
+              textCapitalization: TextCapitalization.sentences,
+              enableSuggestions: true,
+
               decoration: InputDecoration(labelText: 'Send a message...'),
               onChanged: (value) {
                 setState(() {
