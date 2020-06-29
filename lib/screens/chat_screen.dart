@@ -40,6 +40,8 @@ class _ChatScreenState extends State<ChatScreen> {
         title: Text('Flutter Chat'),
         actions: [
           DropdownButton(
+            underline: Container(),
+
             icon: Icon(
               Icons.more_vert,
               color: Theme.of(context).primaryIconTheme.color,
